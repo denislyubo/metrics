@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  prometheus:
+    build:
+      context: .
+      dockerfile: prometheus/Dockerfile
+    ports:
+      - 9090:9090
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - 8181:8181
+    depends_on:
+      - prometheus
